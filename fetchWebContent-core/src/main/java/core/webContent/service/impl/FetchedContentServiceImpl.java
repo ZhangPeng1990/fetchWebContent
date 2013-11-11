@@ -11,7 +11,7 @@ import core.webContent.service.FetchedContentService;
 @Service("fetchedContentService")
 public class FetchedContentServiceImpl implements FetchedContentService {
 
-	@Autowired
+	@Autowired(required=true)
 	private FetchedContentMapper fetchedContentMapper;
 	
 	@Override

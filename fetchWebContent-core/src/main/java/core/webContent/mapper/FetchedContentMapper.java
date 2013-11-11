@@ -1,5 +1,6 @@
 package core.webContent.mapper;
 
+
 import core.webContent.model.FetchedContentDO;
 
 public interface FetchedContentMapper {

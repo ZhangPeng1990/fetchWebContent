@@ -1,3 +1,5 @@
 lib/.classpath
 lib/.project
 lib/.settings
+target
+bin

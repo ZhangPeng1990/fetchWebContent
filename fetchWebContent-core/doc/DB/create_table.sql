@@ -1,0 +1,1 @@
+CREATE TABLE `fetch_web_content`.`fetched_Content`( `id` BIGINT NOT NULL AUTO_INCREMENT, `web_Url` VARCHAR(2000), `web_Title` VARCHAR(500), `web_Content` TEXT, `fecthed_Time` TIMESTAMP, `update_Time` TIMESTAMP, PRIMARY KEY (`id`) ) CHARSET=utf8; 

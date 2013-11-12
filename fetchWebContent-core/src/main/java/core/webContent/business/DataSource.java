@@ -2,6 +2,8 @@ package core.webContent.business;
 
 import java.util.Date;
 
+import core.webContent.enums.IsFetched;
+
 public class DataSource {
 
 	private Long id;
@@ -14,6 +16,9 @@ public class DataSource {
 
     private Date updateTime;
 
+    private IsFetched isFetched;
+    
+    private Date fecthedTime;
     
 	public Long getId() {
 		return id;
@@ -53,5 +58,21 @@ public class DataSource {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public IsFetched getIsFetched() {
+		return isFetched;
+	}
+
+	public void setIsFetched(IsFetched isFetched) {
+		this.isFetched = isFetched;
+	}
+
+	public Date getFecthedTime() {
+		return fecthedTime;
+	}
+
+	public void setFecthedTime(Date fecthedTime) {
+		this.fecthedTime = fecthedTime;
 	}
 }

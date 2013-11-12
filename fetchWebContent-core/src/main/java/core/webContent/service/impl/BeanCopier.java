@@ -2,6 +2,7 @@ package core.webContent.service.impl;
 
 import core.webContent.business.DataSource;
 import core.webContent.business.FetchedContent;
+import core.webContent.enums.IsFetched;
 import core.webContent.model.DataSourceDO;
 import core.webContent.model.FetchedContentDO;
 
@@ -27,6 +28,7 @@ public class BeanCopier {
 		fetchedContentDO.setWebTitle(fetchedContent.getWebTitle());
 		fetchedContentDO.setWebUrl(fetchedContent.getWebUrl());
 		fetchedContentDO.setDsId(fetchedContent.getDataSource() != null ? fetchedContent.getDataSource().getId() : null);
+//		fetchedContentDO.setHtmlFile(fetchedContent.getHtmlFile().getAbsolutePath());
 		return fetchedContentDO;
 	}
 	
@@ -37,6 +39,8 @@ public class BeanCopier {
 		dataSource.setId(dataSourceDO.getId());
 		dataSource.setInsertTime(dataSourceDO.getInsertTime());
 		dataSource.setUpdateTime(dataSourceDO.getUpdateTime());
+		dataSource.setIsFetched(dataSourceDO.getIsFetched() != null ? IsFetched.valueOf(dataSourceDO.getIsFetched()) : null);
+		dataSource.setFecthedTime(dataSourceDO.getFecthedTime());
 		return dataSource;
 	}
 	
@@ -47,6 +51,8 @@ public class BeanCopier {
 		dataSourceDO.setId(dataSource.getId());
 		dataSourceDO.setInsertTime(dataSource.getInsertTime());
 		dataSourceDO.setUpdateTime(dataSource.getUpdateTime());
+		dataSourceDO.setIsFetched(dataSource.getIsFetched() != null ? dataSource.getIsFetched().toString() : null);
+		dataSourceDO.setFecthedTime(dataSource.getFecthedTime());
 		return dataSourceDO;
 	}
 }

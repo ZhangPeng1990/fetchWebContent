@@ -9,7 +9,11 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.htmlparser.Node;
+import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
+import org.htmlparser.filters.TagNameFilter;
+import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 
 import core.webContent.business.DataSource;
@@ -59,6 +63,19 @@ public class FetchUtil {
 		FetchedContent fetchedContent = null;
 		try {
 			Parser parser = new Parser(webUrl);
+			// 得到名称为div的标签
+			NodeFilter filter = new TagNameFilter("title");
+			//得到nodes
+			NodeList nodes = parser.extractAllNodesThatMatch(filter);
+			//对parser进行重置，以便于下次的filter操作
+			parser.reset();
+			
+			if(nodes != null && nodes.size() == 1){
+				System.out.println(nodes.toHtml());
+				System.out.println(nodes.toString());
+				Node node = nodes.elementAt(0);
+				System.out.println(node.getText());
+			}
 		} catch (ParserException e) {
 			e.printStackTrace();
 		}
@@ -67,5 +84,8 @@ public class FetchUtil {
 	
 	public static void main(String[] args) {
 		FetchAndWrite("http://www.blogjava.net/terryxue/archive/2009/12/17/306329.html");
+		DataSource dataSource = new DataSource();
+		dataSource.setDsUrl("http://www.blogjava.net/terryxue/archive/2009/12/17/306329.html");
+		fetchByDataSource(dataSource);
 	}
 }

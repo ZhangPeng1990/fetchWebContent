@@ -26,6 +26,8 @@ CREATE TABLE `datasource_message` (
   `ds_url` varchar(500) DEFAULT NULL,
   `insert_Time` datetime DEFAULT NULL,
   `update_Time` datetime DEFAULT NULL,
+  `is_Fetched` enum('YES','NO') DEFAULT NULL,
+  `fecthed_Time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 

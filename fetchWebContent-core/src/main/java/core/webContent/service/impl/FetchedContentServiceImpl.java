@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import core.webContent.business.DataSource;
 import core.webContent.business.FetchedContent;
 import core.webContent.mapper.FetchedContentMapper;
 import core.webContent.model.FetchedContentDO;
@@ -24,6 +25,12 @@ public class FetchedContentServiceImpl implements FetchedContentService {
 		this.fetchedContentMapper.insert(fetchedContentDO);
 		fetchedContent.setId(fetchedContentDO.getId());
 		return fetchedContent;
+	}
+
+	@Override
+	public FetchedContent fetch(DataSource dataSource) {
+		//DOTO
+		return null;
 	}
 
 }

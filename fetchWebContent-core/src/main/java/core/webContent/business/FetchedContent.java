@@ -16,6 +16,7 @@ public class FetchedContent {
 
     private String webContent;
 
+    private DataSource dataSource;
     
 	public Long getId() {
 		return id;
@@ -63,5 +64,13 @@ public class FetchedContent {
 
 	public void setWebContent(String webContent) {
 		this.webContent = webContent;
+	}
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 }

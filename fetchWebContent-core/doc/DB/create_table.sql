@@ -1,1 +1,3 @@
-CREATE TABLE `fetch_web_content`.`fetched_Content`( `id` BIGINT NOT NULL AUTO_INCREMENT, `web_Url` VARCHAR(2000), `web_Title` VARCHAR(500), `web_Content` TEXT, `fecthed_Time` TIMESTAMP, `update_Time` TIMESTAMP, PRIMARY KEY (`id`) ) CHARSET=utf8; 
+CREATE TABLE `fetch_web_content`.`fetched_Content`( `id` BIGINT NOT NULL AUTO_INCREMENT, `web_Url` VARCHAR(2000), `web_Title` VARCHAR(500), `web_Content` TEXT, `fecthed_Time` TIMESTAMP, `update_Time` TIMESTAMP, PRIMARY KEY (`id`) ) CHARSET=utf8;
+
+CREATE TABLE `fetch_web_content`.`DataSource_Message`( `id` BIGINT NOT NULL AUTO_INCREMENT, `ds_title` VARCHAR(50), `ds_url` VARCHAR(500), `insert_Time` DATETIME, `update_Time` DATETIME, PRIMARY KEY (`id`) ) ENGINE=INNODB CHARSET=utf8; 

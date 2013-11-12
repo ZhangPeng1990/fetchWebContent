@@ -8,8 +8,8 @@ import java.beans.PropertyDescriptor;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
-import core.webContent.business.FetchedContent;
-import core.webContent.model.FetchedContentDO;
+import core.webContent.business.DataSource;
+import core.webContent.model.DataSourceDO;
 
 
 public class AppCopy {
@@ -49,8 +49,8 @@ public class AppCopy {
 	
 	@Test
 	public void test() throws IntrospectionException{
-		FetchedContent fetchedContent = new FetchedContent();
-		FetchedContentDO fecthedContentDO = new FetchedContentDO();
-		this.printOut(fetchedContent,fecthedContentDO);
+		DataSource dataSource = new DataSource();
+		DataSourceDO dataSourceDO = new DataSourceDO();
+		this.printOut(dataSource,dataSourceDO);
 	}
 }

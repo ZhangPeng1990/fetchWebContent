@@ -55,7 +55,7 @@
 	</bean>
 	
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="tushu.**.mapper" />
+		<property name="basePackage" value="core.**.mapper" />
 		<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory" /> -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>

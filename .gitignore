@@ -1,6 +1,8 @@
 lib/.classpath
 lib/.project
 lib/.settings
+fetchWebContent-core/bin
+fetchWebContent-core/target
 target
 bin
 .settings

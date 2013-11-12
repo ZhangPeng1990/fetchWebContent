@@ -1,15 +1,25 @@
 package tushu.service;
 
-import static org.junit.Assert.*;
 import junit.base.BaseTest;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import core.webContent.business.FetchedContent;
+import core.webContent.service.FetchedContentService;
 
 public class FetchedContentServiceImplTest extends BaseTest {
+	
+	@Autowired
+	private FetchedContentService fecthedContentService;
 
 	@Test
 	public void testAddFetchedContent() {
-		fail("Not yet implemented");
+		FetchedContent fc = new FetchedContent();
+		fc.setWebContent("cadsca");
+		fc.setWebTitle("title");
+		fc = fecthedContentService.addFetchedContent(fc);
+		System.out.println(fc.getId());
 	}
 
 }

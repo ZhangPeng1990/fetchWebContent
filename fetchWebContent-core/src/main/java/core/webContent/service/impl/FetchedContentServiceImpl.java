@@ -1,5 +1,7 @@
 package core.webContent.service.impl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class FetchedContentServiceImpl implements FetchedContentService {
 	
 	@Override
 	public FetchedContent addFetchedContent(FetchedContent fetchedContent) {
+		fetchedContent.setUpdateTime(new Date());
+		fetchedContent.setFecthedTime(new Date());
 		FetchedContentDO fetchedContentDO = BeanCopier.toFetchedContentDO(fetchedContent);
 		this.fetchedContentMapper.insert(fetchedContentDO);
 		fetchedContent.setId(fetchedContentDO.getId());

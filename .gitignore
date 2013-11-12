@@ -6,3 +6,4 @@ fetchWebContent-core/target
 target
 bin
 .settings
+build/classes

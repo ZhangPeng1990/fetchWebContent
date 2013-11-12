@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import core.webContent.business.DataSource;
 import core.webContent.business.FetchedContent;
-import core.webContent.mapper.FetchedContentMapper;
+import core.webContent.mapper.FetchedContentDOMapper;
 import core.webContent.model.FetchedContentDO;
 import core.webContent.service.FetchedContentService;
 
@@ -15,7 +15,7 @@ import core.webContent.service.FetchedContentService;
 public class FetchedContentServiceImpl implements FetchedContentService {
 
 	@Autowired(required=true)
-	private FetchedContentMapper fetchedContentMapper;
+	private FetchedContentDOMapper fetchedContentMapper;
 	
 	@Override
 	public FetchedContent addFetchedContent(FetchedContent fetchedContent) {

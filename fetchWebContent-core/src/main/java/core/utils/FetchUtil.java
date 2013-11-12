@@ -9,6 +9,12 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.htmlparser.Parser;
+import org.htmlparser.util.ParserException;
+
+import core.webContent.business.DataSource;
+import core.webContent.business.FetchedContent;
+
 public class FetchUtil {
 
 	private final static String CRLF = System.getProperty("line.separator");
@@ -46,6 +52,17 @@ public class FetchUtil {
 			}
 			
 		}
+	}
+	
+	public static FetchedContent fetchByDataSource(DataSource dataSource){
+		String webUrl = dataSource.getDsUrl();
+		FetchedContent fetchedContent = null;
+		try {
+			Parser parser = new Parser(webUrl);
+		} catch (ParserException e) {
+			e.printStackTrace();
+		}
+		return fetchedContent;
 	}
 	
 	public static void main(String[] args) {

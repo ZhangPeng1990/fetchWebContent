@@ -12,6 +12,11 @@ public class DataSource {
 
     private String dsUrl;
 
+    private String localAddress;
+    private Integer addressId;//地址id
+    private Integer fatherAddressId;
+    private Integer addressLevel;//地址级别，比如省为1，市为2
+    
     private Date insertTime;
 
     private Date updateTime;
@@ -74,5 +79,37 @@ public class DataSource {
 
 	public void setFecthedTime(Date fecthedTime) {
 		this.fecthedTime = fecthedTime;
+	}
+
+	public String getLocalAddress() {
+		return localAddress;
+	}
+
+	public void setLocalAddress(String localAddress) {
+		this.localAddress = localAddress;
+	}
+
+	public Integer getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(Integer addressId) {
+		this.addressId = addressId;
+	}
+
+	public Integer getFatherAddressId() {
+		return fatherAddressId;
+	}
+
+	public void setFatherAddressId(Integer fatherAddressId) {
+		this.fatherAddressId = fatherAddressId;
+	}
+
+	public Integer getAddressLevel() {
+		return addressLevel;
+	}
+
+	public void setAddressLevel(Integer addressLevel) {
+		this.addressLevel = addressLevel;
 	}
 }

@@ -51,7 +51,7 @@
 	<!--MyBatis integration with Spring as define sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:core/webContent/mapper/xml/*.xml" />
+		<property name="mapperLocations" value="classpath:core/**/mapper/xml/*.xml" />
 	</bean>
 	
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

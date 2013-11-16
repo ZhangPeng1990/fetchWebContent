@@ -41,6 +41,10 @@ public class BeanCopier {
 		dataSource.setUpdateTime(dataSourceDO.getUpdateTime());
 		dataSource.setIsFetched(dataSourceDO.getIsFetched() != null ? IsFetched.valueOf(dataSourceDO.getIsFetched()) : null);
 		dataSource.setFecthedTime(dataSourceDO.getFecthedTime());
+		dataSource.setAddressId(dataSourceDO.getAddressId());
+		dataSource.setAddressLevel(dataSourceDO.getAddressLevel());
+		dataSource.setFatherAddressId(dataSourceDO.getFatherAddressId());
+		dataSource.setLocalAddress(dataSourceDO.getLocalAddress());
 		return dataSource;
 	}
 	
@@ -53,6 +57,10 @@ public class BeanCopier {
 		dataSourceDO.setUpdateTime(dataSource.getUpdateTime());
 		dataSourceDO.setIsFetched(dataSource.getIsFetched() != null ? dataSource.getIsFetched().toString() : null);
 		dataSourceDO.setFecthedTime(dataSource.getFecthedTime());
+		dataSourceDO.setAddressId(dataSource.getAddressId());
+		dataSourceDO.setAddressLevel(dataSource.getAddressLevel());
+		dataSourceDO.setFatherAddressId(dataSource.getFatherAddressId());
+		dataSourceDO.setLocalAddress(dataSource.getLocalAddress());
 		return dataSourceDO;
 	}
 }

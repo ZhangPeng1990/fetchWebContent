@@ -90,5 +90,6 @@
 	<classpathentry kind="lib" path="/lib/htmllexer.jar"/>
 	<classpathentry kind="lib" path="/lib/sitecapturer.jar"/>
 	<classpathentry kind="lib" path="/lib/thumbelina.jar"/>
+	<classpathentry kind="lib" path="/lib/jxl-2.6.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,4 +1,4 @@
-package tushu.service;
+package core.webContent.service;
 
 import junit.base.BaseTest;
 

@@ -16,6 +16,7 @@ public class BeanCopier {
 		fetchedContent.setWebContent(fetchedContentDO.getWebContent());
 		fetchedContent.setWebTitle(fetchedContentDO.getWebTitle());
 		fetchedContent.setWebUrl(fetchedContentDO.getWebUrl());
+		fetchedContent.setHtmlFile(fetchedContentDO.getHtmlFile());
 		return fetchedContent;
 	}
 	
@@ -28,7 +29,7 @@ public class BeanCopier {
 		fetchedContentDO.setWebTitle(fetchedContent.getWebTitle());
 		fetchedContentDO.setWebUrl(fetchedContent.getWebUrl());
 		fetchedContentDO.setDsId(fetchedContent.getDataSource() != null ? fetchedContent.getDataSource().getId() : null);
-//		fetchedContentDO.setHtmlFile(fetchedContent.getHtmlFile().getAbsolutePath());
+		fetchedContentDO.setHtmlFile(fetchedContent.getHtmlFile());
 		return fetchedContentDO;
 	}
 	

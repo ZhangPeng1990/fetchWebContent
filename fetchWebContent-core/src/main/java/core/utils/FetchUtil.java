@@ -85,9 +85,8 @@ public class FetchUtil {
 	}
 	
 	public static void main(String[] args) {
-		FetchAndWrite("http://www.blogjava.net/terryxue/archive/2009/12/17/306329.html");
 		DataSource dataSource = new DataSource();
-		dataSource.setDsUrl("http://www.blogjava.net/terryxue/archive/2009/12/17/306329.html");
+		dataSource.setDsUrl("http://www.landchina.com/");
 		fetchByDataSource(dataSource);
 	}
 }

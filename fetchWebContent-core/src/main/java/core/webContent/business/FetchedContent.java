@@ -1,6 +1,5 @@
 package core.webContent.business;
 
-import java.io.File;
 import java.util.Date;
 
 public class FetchedContent {
@@ -19,7 +18,7 @@ public class FetchedContent {
 
     private DataSource dataSource;
     
-    private File htmlFile;
+    private String htmlFile;
     
 	public Long getId() {
 		return id;
@@ -77,11 +76,11 @@ public class FetchedContent {
 		this.dataSource = dataSource;
 	}
 
-	public File getHtmlFile() {
+	public String getHtmlFile() {
 		return htmlFile;
 	}
 
-	public void setHtmlFile(File htmlFile) {
+	public void setHtmlFile(String htmlFile) {
 		this.htmlFile = htmlFile;
 	}
 }

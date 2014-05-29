@@ -1,71 +1,103 @@
 package core.qq.listening;
 
-import org.htmlparser.visitors.HtmlPage;
 import org.springframework.util.Assert;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.JavaScriptPage;
+import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 
-public class Watcher {
 
-	private String originLink = "http://user.qzone.qq.com/QQNumber/WatcherItem";
+public class Watcher implements Runnable{
+
 	private String tagLink = null;
+	private WatcherItem item = null;
+	private int totalLeaveMessNum;
+	private LeaveMessage leaveMessages;
 	
 	public Watcher(String qqNumber, WatcherItem item){
 		Assert.notNull(qqNumber);
 		Assert.notNull(item);
+		this.item = item;
 		
-		tagLink = originLink.replaceAll("QQNumber", qqNumber)
+		tagLink = item.getOriginLink().replaceAll("QQNumber", qqNumber)
 				.replaceAll("WatcherItem", String.valueOf(item.getCode()));
 		
-		parse(tagLink);
 	}
 	
 	/*
 	 * 不能抓取到js执行之后的代码，考虑用HtmlUnit
+	 * 
 	 * */
-	
 	private void parse(String link){
 		
-		final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_10);
+		String sourceCode = null;
+		String htmlCode = null;
+		final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_24);
 		try {
-			final HtmlPage page = webClient.getPage(link);
-			String html = page.toString();
-			System.out.println(html);
+			final Page page = webClient.getPage(link);
+			if(page.isHtmlPage()){
+				HtmlPage htmlPage = (HtmlPage)page;
+				sourceCode = htmlPage.asXml();
+			}else{
+				JavaScriptPage jsPage = (JavaScriptPage)page;
+				sourceCode = jsPage.getContent();
+			}
+			
+			if(item.equals(WatcherItem.LEAVEMESSAGE)){
+				htmlCode = sourceCode.substring(10, sourceCode.length() - 2);
+				this.analysisLeaveMessageJson(htmlCode);
+			}else if(item.equals(WatcherItem.TALKS)){
+				
+			}
+//			FetchUtil.writeToLocal(htmlCode, "D:\\html.txt");
+					
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		} 
-		
-//		Document htmlDoc = null;
-//		
-//		Connection conn = Jsoup.connect(link);
-//		conn.header("Accept", "application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-//		conn.header("Accept-Encoding", "gzip, deflate");
-//		conn.header("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
-//		conn.header("Cache-Control", "max-age=0");
-//		conn.header("Connection", "keep-alive");
-//		conn.header("Host", "user.qzone.qq.com");
-//		conn.header("If-Modified-Since", "Wed, 28 May 2014 08:40:57 GMT");
-//		conn.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0)");
-//		
-//		try {
-//			htmlDoc = conn.get();
-//			System.out.println(htmlDoc.html());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		Response response = null;
-//		try {
-//			response = conn.ignoreContentType(true).method(Method.GET).execute();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		String r = response.body();
-//		System.out.println(r);
+	}
+	
+	private void analysisLeaveMessageJson(String jsonCode){
+		JSONObject leaveMessAll = (JSONObject) JSON.parse(jsonCode);
+		JSONObject leaveMess = (JSONObject) leaveMessAll.get("data");
+		this.totalLeaveMessNum = Integer.parseInt(leaveMess.get("total").toString());
+		JSONArray commentList = (JSONArray) leaveMess.get("commentList");
+		if(!commentList.isEmpty()){
+			JSONObject o = (JSONObject) commentList.get(0);
+			if(o != null){
+				LeaveMessage lm = new LeaveMessage();
+				lm.setLeaveContent(o.get("htmlContent").toString());
+				lm.setLeaveTime(o.getDate("pubtime"));
+				lm.setNickName(o.get("nickname").toString());
+				this.leaveMessages = lm;
+			}
+		}
+	}
+	
+	public void inform(){
+		parse(tagLink);
+		System.out.println("---------------------------监测完毕-------------------------------");
+		System.out.println("监测类型-----------------------------------------------" + this.item.getDesc());
+		System.out.println(this.item.getDesc() + "总数：" + this.totalLeaveMessNum);
+		System.out.println("----------------------------以下为最新一条留言的详细信息------------------------------");
+		this.leaveMessages.outPutDetal();
 	}
 	
 	public String getTagLink() {
 		return tagLink;
+	}
+
+	public LeaveMessage getLeaveMessages() {
+		return leaveMessages;
+	}
+
+	@Override
+	public void run() {
+		inform();
 	}
 }

@@ -25,6 +25,33 @@ public class FetchUtil {
 	private final static String CRLF = System.getProperty("line.separator");//文件换行符
 	private final static String CFS = System.getProperty("path.separator");//路径分隔符
 	
+	public static String writeToLocal(String content,String savePath){
+		
+		File file = new File(savePath);
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BufferedWriter out = null;
+		
+		try {
+			out = new BufferedWriter(new FileWriter(file));
+			out.write(content);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally{
+			if(out != null){
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return null;
+	}
 	/**
 	 * 通过一个url地址抓取一个网页，不做任何处理，只是把一个静态页面写入本地硬盘
 	 * @param url

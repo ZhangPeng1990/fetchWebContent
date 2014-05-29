@@ -13,7 +13,7 @@ public class StartWatch {
 	public static void startWather(Thread t){
 		t.run();
 		try {
-			t.sleep(50000);
+			t.sleep(500000);
 			startWather(t);
 		} catch (InterruptedException e) {
 			e.printStackTrace();

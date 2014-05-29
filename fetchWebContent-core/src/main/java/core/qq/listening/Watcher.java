@@ -1,5 +1,7 @@
 package core.qq.listening;
 
+import java.util.Date;
+
 import org.springframework.util.Assert;
 
 import com.alibaba.fastjson.JSON;
@@ -82,10 +84,11 @@ public class Watcher implements Runnable{
 	public void inform(){
 		parse(tagLink);
 		System.out.println("---------------------------监测完毕-------------------------------");
-		System.out.println("监测类型-----------------------------------------------" + this.item.getDesc());
+		System.out.println("监测类型：" + this.item.getDesc());
 		System.out.println(this.item.getDesc() + "总数：" + this.totalLeaveMessNum);
 		System.out.println("----------------------------以下为最新一条留言的详细信息------------------------------");
 		this.leaveMessages.outPutDetal();
+		System.out.println("----------------------------打印时间：" + new Date() + "------------------------------");
 	}
 	
 	public String getTagLink() {
